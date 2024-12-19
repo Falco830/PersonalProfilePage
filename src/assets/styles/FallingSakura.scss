@@ -1,0 +1,53 @@
+// Variables for custom properties or colors
+$leaf-size: 20px;
+$fall-speed: 10s; // Time for the leaf to fall
+$rotate-speed: 3s; // Time for rotation
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow: visible; // Ensure leaves are visible even outside the body
+  position: relative;
+  background-color: #f0f0f0; // Change to your desired background color
+}
+
+#falling-leaves-container {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; // Leaves shouldn't interfere with UI elements
+  z-index: 99999; // Make sure it's on top
+}
+
+.leaf {
+  position: absolute; // Use absolute positioning for proper animation
+  top: -50px; // Start above the viewport
+  width: 30px; // Width of the leaf (can be adjusted)
+  height: 30px; // Height of the leaf (can be adjusted)
+  background-image: url('../images/leaf1.png'); // Update with the correct path to your image
+  background-size: cover; // Ensure the image covers the element's area
+  background-position: center; // Center the image in the leaf div
+  opacity: 0.8; // Slight opacity for effect
+  animation: fall var(--fall-speed) linear infinite, rotate var(--rotate-speed) linear infinite;
+}
+
+// Keyframe animations for falling and rotating leaves
+@keyframes fall {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateY(100vh) translateX(var(--random-x)) rotate(var(--random-rotate));
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(var(--random-rotate));
+  }
+}
